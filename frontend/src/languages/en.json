@@ -1,0 +1,73 @@
+{
+    "header": {
+        "nav": {
+            "about": "about",
+            "contacts": "contacts",
+            "skills": "skills",
+            "logout": "logout"
+        },
+        "authentication": {
+            "signIn": "sign in",
+            "signUp": "sign up"
+        }
+    },
+    "hi": {
+        "hi": "HI, I'm",
+        "name": "ruben sahakyan",
+        "softwareengineer": "Software engineer"
+    },
+    "cv": "download my cv",
+    "position": {
+        "junior": "junior",
+        "middle": "middle",
+        "senior": "senior"
+    },
+    "skills": {
+        "title": "skills",
+        "usedThisProject": "used this project"
+    },
+    "contacts": "contacts",
+    "contactUs": {
+        "title": "contact us",
+        "email": "email",
+        "subject": "subject",
+        "content": "content...",
+        "send": "send"
+    },
+    "experienceTime": {
+        "year": "years",
+        "month": "months",
+        "day": "days",
+        "hour": "hours",
+        "minut": "minuts",
+        "second": "seconds",
+        "ofWorkExperience": "of work experience"
+    },
+    "aboutMe": {
+        "title": "about me",
+        "content": "About me english adfad adf adf adf adf adf "
+    },
+    "aboutProject": {
+        "title": "about this project",
+        "content": "About this project english adf ad faed fasd fasd fjakdjf laksdjf lakjdfl kajdslf kajldf"
+    },
+    "signIn": {
+        "title": "signIn",
+        "email": "email",
+        "password": "password",
+        "button": "signIn",
+        "errors": {
+            "email": {
+                "empty": "please add email",
+                "incorrect": "please add correct email"
+            },
+            "password": {
+                "empty": "please add password"
+            },
+            "confirmPassword": {
+                "empty": "please confirm password",
+                "incorrect": "Incorrect confirm password"
+            }
+        }
+    }
+}

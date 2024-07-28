@@ -1,0 +1,1 @@
+export const secretKey = '123qwerty456jwt_secret_key'

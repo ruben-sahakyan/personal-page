@@ -1,0 +1,51 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Kodchasan", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: "DigitalNumbers";
+  src: url('./fonts/digital-numbers/DigitalNumbers-Regular.ttf');
+}
+
+:root {
+  --border-color-l: #1F1F1F;
+  --border-color-d: red;
+  --border-color-second: #6A6A6A;
+  --background-color: rgba(74, 74, 74, 0.27);
+  --background-color-second-d: #AAAAAA;
+  --background-color-third-ld: #0c0b0be7;
+
+  --text-color-green: #00FFA3;
+  --color-green-opacity: #00ffa223;
+  --text-color-first-l: #1F1F1F;
+  --text-color-first-d: #B3B3B3;
+
+  --text-color-skill-title: #2E2E2E;
+
+}
+
+a {
+  text-decoration: none;
+  color: inherit
+}
+
+body {
+  background-color: #282828;
+}
+
+li {
+  list-style: none;
+}
+
+input {
+  display: block;
+}
