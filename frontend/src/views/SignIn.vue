@@ -14,7 +14,7 @@ const emailError = ref<boolean>(false);
 const passwordError = ref<boolean>(false);
 
 onBeforeMount(() => {
-    fetch('http://localhost:5000/users/auth', {
+    fetch('http://161.35.27.70/users/auth', {
         method: "GET",
         credentials: 'include',
     })
