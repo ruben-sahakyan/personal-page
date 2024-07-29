@@ -19,7 +19,7 @@ const passwordError = ref<boolean>(false);
 const confirmPasswordError = ref<boolean>(false);
 
 onBeforeMount(() => {
-    fetch('http://localhost:5000/users/auth', {
+    fetch('http://161.35.27.70:5000/users/auth', {
         method: "GET",
         credentials: 'include',
     })

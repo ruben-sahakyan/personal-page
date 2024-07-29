@@ -34,7 +34,7 @@ const contactUs = () => {
         titleError.value = false
         contentError.value = true;
     } else {
-        fetch('http://localhost:5000/contact-us/send-message', {
+        fetch('http://161.35.27.70:5000/contact-us/send-message', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
