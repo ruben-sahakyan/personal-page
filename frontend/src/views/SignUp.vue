@@ -48,7 +48,7 @@ const signInHandle = () => {
         errorText.value = 'Incorrect confirm password';
         confirmPasswordError.value = true
     } else {
-        fetch('http://localhost:5000/users/create', {
+        fetch('http://161.35.27.70:5000/users/create', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
