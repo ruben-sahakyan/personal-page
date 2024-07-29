@@ -14,7 +14,7 @@ const copyContact = (date: string) => {
 }
 
 onBeforeMount(() => {
-    fetch('http://161.35.27.70/users/auth', {
+    fetch(`http://161.35.27.70:5000/users/auth`, {
         method: "GET",
         credentials: 'include',
     })

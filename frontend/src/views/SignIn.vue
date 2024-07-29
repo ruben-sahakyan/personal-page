@@ -14,7 +14,7 @@ const emailError = ref<boolean>(false);
 const passwordError = ref<boolean>(false);
 
 onBeforeMount(() => {
-    fetch('http://161.35.27.70/users/auth', {
+    fetch('http://161.35.27.70:5000/users/auth', {
         method: "GET",
         credentials: 'include',
     })
@@ -38,7 +38,7 @@ const signInHandle = () => {
         errorText.value = 'Please add password'
         passwordError.value = true
     } else {
-        fetch('http://localhost:5000/users/signin', {
+        fetch('http://161.35.27.70:5000/users/signin', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
