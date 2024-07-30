@@ -25,7 +25,7 @@ watch(width.browserWidth, (newSize, oldSize) => {
 
 
 const logout = () => {
-    fetch('http://localhost:5000/users/logout', {
+    fetch('http://161.35.27.70:5000/users/logout', {
       method: "GET",
       credentials: 'include',  
     }).then(resp => resp.json())

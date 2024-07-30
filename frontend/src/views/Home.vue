@@ -13,7 +13,9 @@ const copyContact = (date: string) => {
     navigator.clipboard.writeText(date);
 }
 
+
 onBeforeMount(() => {
+    console.log(import.meta.env);
     fetch(`http://161.35.27.70:5000/users/auth`, {
         method: "GET",
         credentials: 'include',
@@ -39,15 +41,18 @@ onBeforeMount(() => {
         <p>{{ $t('hi.softwareengineer') }}</p>
         <div class="btn-cv">
             <div class="button-before-line"></div>
-            <a type="button" class="button-cv"href="../../src/cv/ruben-sahakyan-cv.pdf" download>downlod my cv</a>
+            <a type="button" class="button-cv" href="../../assets/ruben-sahakyan-cv.pdf" download>downlod my cv</a>
             <div class="button-after-line"></div>
         </div>
+        
         <ExperienceTimeComponent />
+
         <ul class="contacts">
             <li @click="copyContact(contact.date)" v-for="contact of store.contacts" class="contact">
-                <img :src="`src/assets/${contact.image}`"/>
+                <img :src="`../../assets/${contact.image}`"/>
             </li>
         </ul>
+
         <section class="positions">
             <img class="check-position" id="check-junior" src="../assets/check.png"/>
             <div class="position" id="junior">

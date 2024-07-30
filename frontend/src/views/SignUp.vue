@@ -116,7 +116,6 @@ const signInHandle = () => {
 .sign-up {
     margin: auto;
     max-width: 800px;
-    // height: calc(100vh - 215px);
     height: 100vh;
     h1 {
         text-align: center;
@@ -140,5 +139,4 @@ const signInHandle = () => {
         margin-bottom: 0px;
     }
 }
-// 30 + 70 + 50 + 70
 </style>

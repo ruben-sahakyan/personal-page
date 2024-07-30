@@ -2,4 +2,4 @@
 # copy
 
 
-cp -u -r .frontend/dist /usr/nginx/nginx.data 
+cp -r ./frontend/dist /usr/nginx/nginx.data 
