@@ -9,11 +9,11 @@ export class Message {
     @Column({name: 'email'})
     @IsNotEmpty()
     @IsEmail({}, {message: 'Incorrect email'})
-    email: string
+    recipient: string
 
     @Column({name: 'title'})
     @IsNotEmpty()
-    title: string;
+    subject: string;
 
 
     @Column({name: 'content'})

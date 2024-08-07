@@ -25,7 +25,7 @@
         max-width: 100%;
         height: 2px;
         background: rgb(0,0,0);
-        background: linear-gradient(108deg, rgb(150, 150, 150) 0%, rgb(0, 0, 0) 100%);
+        background: linear-gradient(108deg, var(--light-border-color-third) 0%, var(--light-border-color-second) 100%);
         margin-left: 40%;
         margin-top: 80px;
         position: relative;
@@ -34,7 +34,7 @@
             font-size: 30px;
             top: 0px;
             left: 0px;
-            color: var(--text-color-first-d);
+            color: var(--light-text-color-first);
             text-transform: uppercase;
         }
     }
@@ -48,7 +48,7 @@
         p {
             max-width: 700px;
             font-size: 18px;
-            color: var(--text-color-first-d);
+            color: var(--light-text-color-first);
             margin-right: 10px;
         }
         img {

@@ -4,6 +4,8 @@ import InputComponent from '../components/Input/Input.component.vue';
 import { validateEmail } from '../validateEmail/validateEmail';
 import ButtonComponent from "../components/Button/Button.component.vue";
 import { useRouter } from "vue-router";
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n() 
 
 const router = useRouter();
 
@@ -14,7 +16,7 @@ const emailError = ref<boolean>(false);
 const passwordError = ref<boolean>(false);
 
 onBeforeMount(() => {
-    fetch('http://161.35.27.70:5000/users/auth', {
+    fetch(`https://rubensahakyan.com/api/users/auth`, {
         method: "GET",
         credentials: 'include',
     })
@@ -29,16 +31,16 @@ onBeforeMount(() => {
 
 const signInHandle = () => {
     if(email.value.trim() === '') {
-        errorText.value = 'Please add email';
+        errorText.value = t('signIn.errors.email.empty');
         emailError.value = true;
     } else if(!validateEmail(email.value)) {
-        errorText.value = 'Please add correct email'
+        errorText.value = t('signIn.errors.email.incorrect')
         emailError.value = true
     } else if(password.value.trim() === '') {
-        errorText.value = 'Please add password'
+        errorText.value = t('signIn.errors.password.empty')
         passwordError.value = true
     } else {
-        fetch('http://161.35.27.70:5000/users/signin', {
+        fetch(`https://rubensahakyan.com/api/users/signin`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -90,13 +92,12 @@ const signInHandle = () => {
 .sign-in {
     margin: auto;
     max-width: 800px;
-    // height: calc(100vh - 215px);
     height: 100vh;
     h1 {
         text-align: center;
         font-size: 50px;
         padding-top: 50px;
-        color: var(--text-color-first-l);
+        color: var(--light-text-color-first);
         text-transform: uppercase;
     }
     .error-text {

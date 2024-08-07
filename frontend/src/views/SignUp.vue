@@ -5,6 +5,10 @@ import { validateEmail } from "../validateEmail/validateEmail";
 import ButtonComponent from "../components/Button/Button.component.vue";
 import { useRouter } from "vue-router";
 import { useStore } from "../store";
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n() 
+
+const { locale } = useI18n({useScope: 'global'});
 
 const router = useRouter();
 const store = useStore();
@@ -19,7 +23,7 @@ const passwordError = ref<boolean>(false);
 const confirmPasswordError = ref<boolean>(false);
 
 onBeforeMount(() => {
-    fetch('http://161.35.27.70:5000/users/auth', {
+    fetch('https://rubensahakyan.com/api/users/auth', {
         method: "GET",
         credentials: 'include',
     })
@@ -33,22 +37,22 @@ onBeforeMount(() => {
 
 const signInHandle = () => {
     if(email.value.trim() === '') {
-        errorText.value = 'Please add email';
+        errorText.value = t('signUp.errors.email.empty');
         emailError.value = true;
     } else if(!validateEmail(email.value)) {
-        errorText.value = 'Please add correct email';
+        errorText.value = t('signUp.errors.email.incorrect');
         emailError.value = true
     } else if(password.value.trim() === '') {
-        errorText.value = 'Please add password';
+        errorText.value = t('signUp.errors.password.empty');
         passwordError.value = true;
     } else if(confirmPassword.value.trim() === '') {
-        errorText.value = 'Please confirm password';
+        errorText.value = t('signUp.errors.confirmPassword.empty');
         confirmPasswordError.value = true
     } else if (password.value.trim() !== confirmPassword.value.trim()) {
-        errorText.value = 'Incorrect confirm password';
+        errorText.value = t('signUp.errors.confirmPassword.incorrect');
         confirmPasswordError.value = true
     } else {
-        fetch('http://161.35.27.70:5000/users/create', {
+        fetch('https://rubensahakyan.com/api/users/create', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -82,31 +86,35 @@ const signInHandle = () => {
 
 <template>
     <div class="sign-up">
-        <h1>SIGNUP</h1>
+        <h1 :style="locale === 'en' ? 
+        '' 
+        : 
+        'font-size: 25px'
+        ">{{ $t('signUp.title') }}</h1>
         <p class="error-text">{{ errorText }}</p>
         <form @submit.prevent="signInHandle">
-            <InputComponent placeholder="email" type="text"
+            <InputComponent :placeholder="$t('signUp.email')" type="text"
             @click="() => {
                 emailError = false;
                 errorText = '';
             }"
             :style="emailError ? 'border-bottom: 1px solid red' : ''"
             @value="(date: string) => email.value = date"/>
-            <InputComponent placeholder="password" type="password" 
+            <InputComponent :placeholder="$t('signUp.password')" type="password" 
             @click="() => {
                 passwordError = false;
                 errorText = '';
             }"
             :style="passwordError ? 'border-bottom: 1px solid red' : ''"
             @value="(date: string) => password.value = date"/>
-            <InputComponent placeholder="confirm password" type="password"
+            <InputComponent :placeholder="$t('signUp.confirmPassowrd')" type="password"
             @click="() => {
                 confirmPasswordError = false;
                 errorText = '';
             }"
             :style="confirmPasswordError ? 'border-bottom: 1px solid red' : ''" 
             @value="(date: string) => confirmPassword.value = date"/>
-            <ButtonComponent name="signup" size="150"/>
+            <ButtonComponent :name="t('signUp.button')" size="150"/>
         </form>
     </div>
 </template>
@@ -121,7 +129,8 @@ const signInHandle = () => {
         text-align: center;
         font-size: 50px;
         padding-top: 30px;
-        color: var(--text-color-first-l);
+        color: var(--light-text-color-first);
+        text-transform: uppercase;
     }
     .error-text {
         width: 100%;

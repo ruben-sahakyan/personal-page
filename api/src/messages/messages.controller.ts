@@ -17,8 +17,6 @@ export class MessagesController {
     @Post('/send-message')
     @UsePipes(new ValidationPipe())
     async sendMessage(@Body() message: Message): Promise<any> {
-        return this.messagesServie.sendMessage(message);
+        return this.messagesServie.sendEmailWithTemplate(message);
     };
-
-
 }

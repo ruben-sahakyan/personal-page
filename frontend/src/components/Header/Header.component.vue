@@ -25,7 +25,7 @@ watch(width.browserWidth, (newSize, oldSize) => {
 
 
 const logout = () => {
-    fetch('http://161.35.27.70:5000/users/logout', {
+    fetch('https://rubensahakyan.com/api/users/logout', {
       method: "GET",
       credentials: 'include',  
     }).then(resp => resp.json())
@@ -46,13 +46,25 @@ const goTo = (x: number) => {
 
 
 <template>
-    <header :style="burgerMenuOpen ? store.userAuth.status ? 'height: 224px' : 'height: 260px' : ''">
+        <header :style="
+        styleStore.lightTheme ? 
+        burgerMenuOpen ? store.userAuth.status ? 'height: 224px; border: 2px solid var(--light-border-color-first)' 
+        : 'height: 260px; border: 2px solid var(--light-border-color-first)' 
+        : 
+        '2px solid var(--light-border-color-first)'
+        : 
+
+        burgerMenuOpen ? store.userAuth.status ? 'height: 224px; border: 2px solid var(--dark-border-color-second)' 
+        : 
+        'height: 260px; border: 2px solid var(--dark-border-color-second)' 
+        : 
+        'border: 2px solid var(--dark-border-color-second)'
+        ">
         <MessageComponent v-for="message in store.getMessages" :text="message.text"/>
         <div class="header-top">
             <h1 class="logo-long"
             :style="styleStore.lightTheme ? '' : 'color: var(--text-color-first-d)'">
-            <RouterLink to="/">
-                <span>r</span>uben<span>s</span>ahakyan
+            <RouterLink to="/">rubensahakyan
             </RouterLink>
             </h1>
             <h1 class="logo-short">
@@ -87,12 +99,18 @@ const goTo = (x: number) => {
             <template v-else>
                 <ul class="authentication"
                 :style="styleStore.lightTheme ? '' : 'color: var(--text-color-first-d)'">
-                    <li :style="locale === 'en' ? '' : 'font-size: 15px'">
+                    <li :style="locale === 'en' ? 
+                    styleStore.lightTheme ? '' : 'border: 2px solid var(--dark-border-color-second)'
+                    : 
+                    'font-size: 15px'">
                         <RouterLink to="/signin">
                             {{ $t('header.authentication.signIn') }}
                         </RouterLink>
                         </li>
-                    <li :style="locale === 'en' ? '' : 'font-size: 15px'">
+                    <li :style="locale === 'en' ? 
+                    styleStore.lightTheme ? '' : 'border: 2px solid var(--dark-border-color-second)'
+                    : 
+                    'font-size: 15px'">
                         <RouterLink to="/signup">
                             {{ $t('header.authentication.signUp') }}
                         </RouterLink>
@@ -138,10 +156,13 @@ const goTo = (x: number) => {
     </header>
     <div class="header-settings">
         <div class="change-style"
-        :style="styleStore.lightTheme ? '' : 'background-color: var(--background-color-second-d)'">
+        :style="styleStore.lightTheme ? 
+        'border: 2px solid var(--light-border-color-first)' 
+        : 
+        'background-color: var(--background-color-second-d); border: 2px solid var(--dark-border-color-second)'">
             <div @click="() => {
                 styleStore.lightTheme = !styleStore.lightTheme;
-                styleStore.changeBackgroubdColor;
+                styleStore.changeBackgroundColor;
             }"
             :style="styleStore.lightTheme ? '' : 'left: calc(100% - 45px)'">
             <div></div>
@@ -149,13 +170,16 @@ const goTo = (x: number) => {
             <img id="dark-icon" v-if="styleStore.lightTheme" src="../../assets/dark-mode.png"/>
             <img id="light-icon" v-else :style="'left: 7px'" src="../../assets/sun.png"/>
         </div>
-        <div class="change-language">
+        <div class="change-language" :style="styleStore.lightTheme ? 
+        'border: 2px solid var(--light-border-color-first)' 
+        : 
+        'border: 2px solid var(--dark-border-color-second)'">
             <div @click="() => locale === 'en' ? locale = 'ru' : locale = 'en'"
             :style="locale === 'en' ? '' : 'left: calc(100% - 45px)'">
             <div></div>
             </div>
             <p v-if="locale === 'en'">RU</p>
-            <p v-else style="left: 18px;">EN</p>
+            <p v-else style="left: 18px">EN</p>
         </div>
     </div>
 </template>
@@ -167,13 +191,13 @@ header {
     margin-top: 15px;
     width: 100%;
     height: 60px;
-    border: 2px solid var(--border-color-l);
+    border: 2px solid var(--light-border-color-fourth);
     border-radius: 30px;
     background-color: var(--background-color);
     transition: all ease-in-out .3s;
     .auth-user {
         p {
-            color: var(--text-color-first-d)
+            color: var(--light-text-color-first)
         }
     }
     .header-top {
@@ -184,16 +208,12 @@ header {
         justify-content: space-between;
         .logo-long {
             font-size: 20px;
-            color: var(--text-color-first-l);
+            color: var(--light-text-color-first);
             text-transform: uppercase;
             margin-left: 20px;
             cursor: pointer;
             font-weight: 100;
             transition: all ease-in-out .3s;
-            span {
-                font-weight: 400;
-                color: var(--text-color-green);
-            }
         }
         .logo-short {
             display: none;
@@ -214,6 +234,7 @@ header {
                 font-weight: 400;
                 cursor: pointer;
                 transition: all ease-in-out .3s;
+                color: var(--light-text-color-first);
                 &:hover {
                     color: var(--text-color-green);
                     transition: all ease-in-out .2s;
@@ -229,7 +250,7 @@ header {
             li {
                 height: 50px;
                 min-width: 50px;
-                border: 2px solid var(--border-color-l);
+                border: 2px solid var(--light-border-color-fourth);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -240,6 +261,7 @@ header {
                 padding-left: 15px;
                 padding-right: 10px;
                 cursor: pointer;
+                color: var(--light-text-color-first);
                 transition: all ease-in-out .5s;
                 span {
                     color: var(--text-color-green);
@@ -298,7 +320,7 @@ header {
         .change-style, .change-language {
             width: 100px;
             height: 100%;
-            border: 2px solid var(--border-color-l);
+            border: 2px solid var(--light-border-color-fourth);
             border-radius: 25px;
             padding: 0px 1px;
             position: relative;
@@ -312,6 +334,7 @@ header {
                 height: 44px;
                 border-radius: 50%;
                 border: 2px solid var(--border-color-l);
+                border: 2px solid var(--light-border-color-fourth);
                 background-color: rgb(8, 8, 8);
                 cursor: pointer;
                 transition: all ease-in-out .3s;
@@ -388,7 +411,7 @@ header {
                     width: 50px;
                     height: 4px;
                     border-radius: 2px;
-                    background-color: var(--border-color-l);
+                    background-color: var(--light-border-color-first);
                     position: relative;
                     transition: all ease-in-out .7s;
                     &::before {
@@ -397,7 +420,7 @@ header {
                         width: 50px;
                         height: 4px;
                         border-radius: 2px;
-                        background-color: var(--border-color-l);
+                        background-color: var(--light-border-color-first);
                         bottom: 15px;
                         transition: all ease-in-out .3s;
                     }
@@ -407,7 +430,7 @@ header {
                         width: 50px;
                         height: 4px;
                         border-radius: 2px;
-                        background-color: var(--border-color-l);
+                        background-color: var(--light-border-color-first);
                         top: 15px;
                         transition: all ease-in-out .3s;
                     }
@@ -471,7 +494,8 @@ header {
                 font-size: 20px;
                 text-transform: uppercase;
                 color: var(--text-color-first-l);
-                border-top: 1px solid var(--border-color-l);
+                color: rgb(218, 218, 218);
+                border-top: 1px solid rgba(83, 83, 83, 0.425);
                 cursor: pointer;
                 transition-property: all;
                 transition-duration: .3s;
