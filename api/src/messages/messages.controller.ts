@@ -17,6 +17,7 @@ export class MessagesController {
     @Post('/send-message')
     @UsePipes(new ValidationPipe())
     async sendMessage(@Body() message: Message): Promise<any> {
-        return this.messagesServie.sendEmailWithTemplate(message);
+        return {message: 'success', statusCode: 201}
+        // return this.messagesServie.sendEmailWithTemplate(message);
     };
 }
