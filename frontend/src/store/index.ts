@@ -5,7 +5,7 @@ interface contactInterface {
 };
 
 interface skillInterface {
-    id: number, name: string,
+    id: number, name: string, use: boolean
 };
 
 interface hardSkillsInterface {
@@ -23,21 +23,12 @@ interface skillsInterface {
 
 interface messageInterface {
     id: number, text: string
-};
-
-interface UsedSkillsInterface {
-    frontend: skillInterface[],
-    backend: skillInterface[],
-    database: skillInterface[],
-    webserver: skillInterface[],
-    other: skillInterface[],
 }
 
 interface storeInterface {
     userAuth: userAuthInterface,
     skills: skillsInterface,
     contacts: contactInterface[],
-    usedSkills: UsedSkillsInterface,
     messages: messageInterface[],
 };
 
@@ -54,7 +45,7 @@ export const useStyleStore = defineStore('sroreId', {
         }
     },
     getters: {
-        changeBackgroundColor: (state) => {
+        changeBackgroubdColor: (state) => {
             if(!state.lightTheme) {
                 return document.body.style.backgroundColor = 'black';
             } else {
@@ -75,80 +66,42 @@ export const useStore = defineStore('storeId', {
             {id: 3, name: 'linkedIn', date: 'https://am.linkedin.com/in/ruben-sahakyan-611258238/en', image: 'linkedIn.png'},
             {id: 4, name: 'github', date: 'https://github.com/ruben-sahakyan', image: 'github.png'},
         ];
-        const usedSkills = {
-            frontend: [
-                {id: 1, name: 'typescript' },
-                {id: 2, name: 'vue3' },
-                {id: 3, name: 'html5' },
-                {id: 4, name: 'scss' },
-                {id: 5, name: 'pinia' }
-            ],
-            backend: [
-                {id: 1, name: 'typescript' },
-                {id: 2, name: 'nest' },
-                {id: 3, name: 'oop'},
-                {id: 4, name: 'restapi'}
-            ],
-            database: [
-                {id: 1, name: 'postgresql'}
-            ],
-            webserver: [
-                {id: 1, name: 'nginx'}
-            ],
-            other: [
-                {id: 1, name: 'docker'},
-                {id: 2, name: 'git'},
-                {id: 3, name: 'github'},
-                {id: 4, name: 'dbeaver'},
-                {id: 5, name: 'postman'},
-                {id: 7, name: 'restapi'}
-            ]
-        };
         const skills = {
             hardSkills: {
                 javascript: [
-                    {id: 1, name: 'javascript' },
-                    {id: 2, name: 'typescript' },
-                    {id: 3, name: 'vue' },
-                    {id: 4, name: 'react' },
-                    {id: 5, name: 'epxress' },
-                    {id: 6, name: 'nest' },
+                    {id: 1, name: 'javascript', use: true},
+                    {id: 2, name: 'typescript', use: true},
+                    {id: 3, name: 'vue', use: true},
+                    {id: 4, name: 'react', use: false},
+                    {id: 5, name: 'epxress', use: false},
+                    {id: 6, name: 'nest', use: true},
                 ],
                 os: [
-                    {id: 1, name: 'linux' },
-                    {id: 2, name: 'windows' },
+                    {id: 1, name: 'linux', use: true},
+                    {id: 2, name: 'windows', use: false},
                 ],
                 database: [
-                    {id: 1, name: 'postgresql' },
-                    {id: 2, name: 'sqlite' },
-                    {id: 3, name: 'mongodb' },
+                    {id: 1, name: 'postgresql', use: true},
+                    {id: 2, name: 'sqlite', use: false},
+                    {id: 3, name: 'mongodb', use: false},
                 ],
                 graphic: [
-                    {id: 1, name: 'photoshop' },
-                    {id: 2, name: 'figma' },
-                ],
-                html: [
-                    {id:1, name: 'html5' }
-                ],
-                css: [
-                    {id: 1, name: 'css3' },
-                    {id: 1, name: 'scss' },
-                    {id: 1, name: 'tailwind' }
+                    {id: 1, name: 'photoshop', use: true},
+                    {id: 2, name: 'figma', use: true},
                 ],
                 other: [
-                    {id: 1, name: 'docker' },
-                    {id: 2, name: 'git' },
-                    {id: 3, name: 'github' },
-                    {id: 4, name: 'dbeaver' },
-                    {id: 5, name: 'postman' },
-                    {id: 6, name: 'pgadmin' },
-                    {id: 7, name: 'restapi' }
+                    {id: 1, name: 'docker', use: true},
+                    {id: 2, name: 'git', use: true},
+                    {id: 3, name: 'github', use: true},
+                    {id: 4, name: 'postman', use: true},
+                    {id: 5, name: 'pgadmin', use: true},
+                    {id: 6, name: 'rest api', use: true}
                 ]
             },
             softSkills: [
-                {id: 1, name: 'hard working' },
-                {id: 2, name: 'problem solving' },
-                {id: 3, name: 'comunication' }
+                {id: 1, name: 'hard working', use: true},
+                {id: 2, name: 'problem solving', use: true},
+                {id: 3, name: 'comunication', use: false}
             ]
         };
         return {
@@ -156,7 +109,6 @@ export const useStore = defineStore('storeId', {
             messages,
             contacts,
             skills,
-            usedSkills,
             }
     },
     getters: {

@@ -49,28 +49,7 @@
     },
     "aboutProject": {
         "title": "about this project",
-        "content": "About this project english adf ad faed fasd fasd fjakdjf laksdjf lakjdfl kajdslf kajldf",
-        "skillsTitle": "used in this project"
-    },
-    "signUp": {
-        "title": "signUp",
-        "email": "email",
-        "password": "password",
-        "confirmPassowrd": "confirm password",
-        "button": "signUp",
-        "errors": {
-            "email": {
-                "empty": "please add email",
-                "incorrect": "please add correct email"
-            },
-            "password": {
-                "empty": "please add password"
-            },
-            "confirmPassword": {
-                "empty": "please confirm password",
-                "incorrect": "Incorrect confirm password"
-            }
-        }
+        "content": "About this project english adf ad faed fasd fasd fjakdjf laksdjf lakjdfl kajdslf kajldf"
     },
     "signIn": {
         "title": "signIn",
@@ -84,6 +63,10 @@
             },
             "password": {
                 "empty": "please add password"
+            },
+            "confirmPassword": {
+                "empty": "please confirm password",
+                "incorrect": "Incorrect confirm password"
             }
         }
     }

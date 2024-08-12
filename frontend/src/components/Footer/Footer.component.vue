@@ -39,7 +39,7 @@ footer {
         }
     }
     p {
-        color: var(--light-text-color-first);
+        color: var(--text-color-green);
         text-transform: uppercase;
         font-size: 32px;
     }

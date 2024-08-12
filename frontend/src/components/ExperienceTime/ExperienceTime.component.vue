@@ -21,7 +21,7 @@ function updateClock() {
     return {
         years: years - startYear,
         monts: monts - startMonts,
-        days: days < startDays ? days + startDays : days - startDays,
+        days: days - startDays,
         hourse,
         minuts,
         seconds
@@ -112,7 +112,7 @@ section {
                 text-align: center;
                 text-transform: uppercase;
                 font-size: 15px;
-                color: var(--light-text-color-first);
+                color: var(--text-color-first-d);
             }
             .time {
                 width: 100%;
@@ -124,10 +124,11 @@ section {
         }
     }
     p {
+        color: var(--text-color-first-d);
         text-align: center;
         font-size: 24px;
         text-transform: uppercase;
-        color: var(--light-text-color-first);
+        color: var(--text-color-first-d);
     }
 }
 @media only screen and (max-width: 580px) {

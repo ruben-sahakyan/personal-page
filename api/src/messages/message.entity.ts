@@ -6,14 +6,14 @@ export class Message {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({name: 'recipient'})
+    @Column({name: 'email'})
     @IsNotEmpty()
     @IsEmail({}, {message: 'Incorrect email'})
-    recipient: string
+    email: string
 
-    @Column({name: 'subject'})
+    @Column({name: 'title'})
     @IsNotEmpty()
-    subject: string;
+    title: string;
 
 
     @Column({name: 'content'})

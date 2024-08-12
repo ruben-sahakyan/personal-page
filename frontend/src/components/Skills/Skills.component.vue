@@ -15,6 +15,10 @@ const styleStore = useStyleStore();
         </div>
         <h4 :style="styleStore.lightTheme ? '' : 'color: var(--text-color-first-d)'">hardskills</h4>
         <div class="skills-list">
+            <div class="used-this-project">
+                <h5>{{ $t('skills.usedThisProject') }}</h5>
+                <img src="../../assets/checkmark.png"/>
+            </div>
             <div v-for="(skills, skillsChapter) in store.skills.hardSkills">
                 <p>{{ skillsChapter }}</p>
                 <OneSkill v-for="skill of skills" :skill="skill"/>
@@ -39,14 +43,14 @@ section {
         max-width: 100%;
         height: 2px;
         background: rgb(0,0,0);
-        background: linear-gradient(108deg, var(--light-border-color-second) 0%, var(--light-border-color-third) 100%);
+        background: linear-gradient(108deg, rgb(0, 0, 0) 0%, rgb(150, 150, 150) 100%);
         margin-right: 40%;
         h3 {
             position: absolute;
             font-size: 30px;
             text-transform: uppercase;
             right: 0px;
-            color: var(--light-text-color-first);
+            color: var(--text-color-first-d);
         }
     }
     h4 {
@@ -55,7 +59,7 @@ section {
         margin-top: 100px;
         font-weight: 100;
         text-transform: uppercase;
-        color: var(--text-color-first-d);
+        color: black;
     }
     .skills-list {
         margin: auto;
@@ -68,10 +72,24 @@ section {
         padding: 10px;
         padding-top: 0px;
         position: relative;
+        .used-this-project {
+            position: absolute;
+            color: white;
+            top: -40px;
+            right: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            h5 {
+                font-size: 15px;
+                text-transform: uppercase;
+                color: var(--text-color-first-d);
+            }
+        }
         p {
             margin-top: 10px;
             color: var(--text-color-skill-title);
-            color: var(--text-color-first-d);
             text-transform: uppercase;
             text-align: center;
         }

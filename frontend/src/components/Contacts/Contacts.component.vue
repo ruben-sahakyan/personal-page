@@ -48,13 +48,13 @@ section {
         max-width: 100%;
         height: 2px;
         background: rgb(0,0,0);
-        background: linear-gradient(108deg, var(--light-border-color-third) 0%, var(--light-border-color-second) 100%);
+        background: linear-gradient(108deg, rgb(150, 150, 150) 0%, rgb(0, 0, 0) 100%);
         margin-left: 40%;
         position: relative;
         h3 {
             position: absolute;
             font-size: 30px;
-            color: var(--light-text-color-first);
+            color: var(--text-color-first-d);
             text-transform: uppercase;
         }
     }
@@ -70,7 +70,7 @@ section {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0);
+            border: 1px solid var(--color-green-opacity);
             display: flex;
             align-items: center;
             justify-content: center;

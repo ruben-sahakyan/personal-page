@@ -5,10 +5,6 @@ import { validateEmail } from "../validateEmail/validateEmail";
 import ButtonComponent from "../components/Button/Button.component.vue";
 import { useRouter } from "vue-router";
 import { useStore } from "../store";
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n() 
-
-const { locale } = useI18n({useScope: 'global'});
 
 const router = useRouter();
 const store = useStore();
@@ -23,7 +19,7 @@ const passwordError = ref<boolean>(false);
 const confirmPasswordError = ref<boolean>(false);
 
 onBeforeMount(() => {
-    fetch('https://rubensahakyan.com/api/users/auth', {
+    fetch('http://161.35.27.70:5000/users/auth', {
         method: "GET",
         credentials: 'include',
     })
@@ -37,22 +33,22 @@ onBeforeMount(() => {
 
 const signInHandle = () => {
     if(email.value.trim() === '') {
-        errorText.value = t('signUp.errors.email.empty');
+        errorText.value = 'Please add email';
         emailError.value = true;
     } else if(!validateEmail(email.value)) {
-        errorText.value = t('signUp.errors.email.incorrect');
+        errorText.value = 'Please add correct email';
         emailError.value = true
     } else if(password.value.trim() === '') {
-        errorText.value = t('signUp.errors.password.empty');
+        errorText.value = 'Please add password';
         passwordError.value = true;
     } else if(confirmPassword.value.trim() === '') {
-        errorText.value = t('signUp.errors.confirmPassword.empty');
+        errorText.value = 'Please confirm password';
         confirmPasswordError.value = true
     } else if (password.value.trim() !== confirmPassword.value.trim()) {
-        errorText.value = t('signUp.errors.confirmPassword.incorrect');
+        errorText.value = 'Incorrect confirm password';
         confirmPasswordError.value = true
     } else {
-        fetch('https://rubensahakyan.com/api/users/create', {
+        fetch('http://161.35.27.70:5000/users/create', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -86,35 +82,31 @@ const signInHandle = () => {
 
 <template>
     <div class="sign-up">
-        <h1 :style="locale === 'en' ? 
-        '' 
-        : 
-        'font-size: 25px'
-        ">{{ $t('signUp.title') }}</h1>
+        <h1>SIGNUP</h1>
         <p class="error-text">{{ errorText }}</p>
         <form @submit.prevent="signInHandle">
-            <InputComponent :placeholder="$t('signUp.email')" type="text"
+            <InputComponent placeholder="email" type="text"
             @click="() => {
                 emailError = false;
                 errorText = '';
             }"
             :style="emailError ? 'border-bottom: 1px solid red' : ''"
             @value="(date: string) => email.value = date"/>
-            <InputComponent :placeholder="$t('signUp.password')" type="password" 
+            <InputComponent placeholder="password" type="password" 
             @click="() => {
                 passwordError = false;
                 errorText = '';
             }"
             :style="passwordError ? 'border-bottom: 1px solid red' : ''"
             @value="(date: string) => password.value = date"/>
-            <InputComponent :placeholder="$t('signUp.confirmPassowrd')" type="password"
+            <InputComponent placeholder="confirm password" type="password"
             @click="() => {
                 confirmPasswordError = false;
                 errorText = '';
             }"
             :style="confirmPasswordError ? 'border-bottom: 1px solid red' : ''" 
             @value="(date: string) => confirmPassword.value = date"/>
-            <ButtonComponent :name="t('signUp.button')" size="150"/>
+            <ButtonComponent name="signup" size="150"/>
         </form>
     </div>
 </template>
@@ -124,13 +116,13 @@ const signInHandle = () => {
 .sign-up {
     margin: auto;
     max-width: 800px;
+    // height: calc(100vh - 215px);
     height: 100vh;
     h1 {
         text-align: center;
         font-size: 50px;
         padding-top: 30px;
-        color: var(--light-text-color-first);
-        text-transform: uppercase;
+        color: var(--text-color-first-l);
     }
     .error-text {
         width: 100%;
@@ -148,4 +140,5 @@ const signInHandle = () => {
         margin-bottom: 0px;
     }
 }
+// 30 + 70 + 50 + 70
 </style>

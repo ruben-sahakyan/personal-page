@@ -4,20 +4,17 @@ import AboutProject from "../components/AboutProject/AboutProject.vue";
 import SkillsComponent from "../components/Skills/Skills.component.vue";
 import ContactsComponent from "../components/Contacts/Contacts.component.vue";
 import ExperienceTimeComponent from "../components/ExperienceTime/ExperienceTime.component.vue";
-import { useStore, useStyleStore } from "../store";
+import { useStore } from "../store";
 import { onBeforeMount } from "vue";
-import CVButtonComponent from "../components/CVButton/CVButton.component.vue";
 
 const store = useStore();
-const styleStore = useStyleStore();
 
 const copyContact = (date: string) => {
     navigator.clipboard.writeText(date);
 }
 
-
 onBeforeMount(() => {
-    fetch(`https://rubensahakyan.com/api/users/auth`, {
+    fetch(`http://161.35.27.70:5000/users/auth`, {
         method: "GET",
         credentials: 'include',
     })
@@ -28,7 +25,7 @@ onBeforeMount(() => {
             store.userAuth.email = date.email
         } else {
             store.userAuth.status = false;
-            store.userAuth.email = ''; 
+            store.userAuth.email = '';
         }
     })
 })
@@ -37,19 +34,20 @@ onBeforeMount(() => {
 
 <template>
     <div class="home">
-        <h3 :style="styleStore.lightTheme ? 'color: var(--light-text-color-first)' : 'color: var(--dark-text-color-first)'">{{ $t('hi.hi') }}</h3>
-        <h2 :style="styleStore.lightTheme ? 'color: var(--light-text-color-first)' : 'color: var(--dark-text-color-first)'">{{ $t('hi.name') }}</h2>
-        <p :style="styleStore.lightTheme ? 'color: var(--light-text-color-first)' : 'color: var(--dark-text-color-first)'">{{ $t('hi.softwareengineer') }}</p>
-        <CVButtonComponent />
-        
+        <h3>{{ $t('hi.hi') }}</h3>
+        <h2>{{ $t('hi.name') }}</h2>
+        <p>{{ $t('hi.softwareengineer') }}</p>
+        <div class="btn-cv">
+            <div class="button-before-line"></div>
+            <a type="button" class="button-cv"href="../../src/cv/ruben-sahakyan-cv.pdf" download>downlod my cv</a>
+            <div class="button-after-line"></div>
+        </div>
         <ExperienceTimeComponent />
-
         <ul class="contacts">
             <li @click="copyContact(contact.date)" v-for="contact of store.contacts" class="contact">
-                <img :src="`../assets/${contact.image}`"/>
+                <img :src="`src/assets/${contact.image}`"/>
             </li>
         </ul>
-
         <section class="positions">
             <img class="check-position" id="check-junior" src="../assets/check.png"/>
             <div class="position" id="junior">
@@ -81,25 +79,66 @@ onBeforeMount(() => {
         font-size: 20px;
         color: white;
         text-align: center;
-        transition: all ease-in-out .5s;
     }
     h2 {
         width: 100%;
         padding: 0px;
         text-align: center;
         font-size: 120px;
-        font-weight: 100;
+        font-weight: 900;
         text-transform: uppercase;
-        color: rgb(219, 219, 219);
+        color: var(--text-color-first-l);
         transition: all ease-in-out .3s;
     }
     p {
         text-align: center;
         color: white;
-        font-weight: 100;
+        font-weight: 900;
         font-size: 20px;
         text-transform: uppercase;
-        transition: all ease-in-out .5s;
+    }
+    .btn-cv {
+        margin-top: 70px;
+        width: 100%;
+        height: 90px;
+        .button-before-line {
+            max-width: 100%;
+            height: 2px;
+            margin-bottom: 10px;
+            margin-left: calc(50% - 430px);
+            background: rgb(0,0,0);
+            background: linear-gradient(108deg, rgba(0,255,163,1) 0%, rgba(0, 0, 0,1) 100%);
+        }
+        .button-cv {
+            display: block;
+            width: 920px;
+            height: 60px;
+            border-radius: 30px;
+            border: 2px solid var(--text-color-green);
+            font-size: 24px;
+            text-transform: uppercase;
+            color: var(--text-color-green);
+            background-color: gray;
+            margin-left: calc(50% - 460px);
+            background: rgb(45,45,45);
+            background: radial-gradient(circle, rgba(45,45,45,1) 0%, rgba(129,129,129,1) 50%, rgba(45,45,45,1) 100%);
+            box-shadow: 0px 0px 50px rgba(0, 255, 106, 0.39);
+            animation-name: ritmShadow;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .button-after-line {
+            max-width: 100%;
+            height: 2px;
+            margin-top: 10px;
+            margin-right: calc(50% - 430px);
+            background: rgb(0,0,0);
+            background: linear-gradient(108deg, rgba(0,0,0,1) 0%, rgba(0,255,163,1) 100%);
+        }
     }
     .contacts {
         margin: auto;
@@ -112,7 +151,7 @@ onBeforeMount(() => {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0);
+            border: 1px solid var(--color-green-opacity);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -165,11 +204,14 @@ onBeforeMount(() => {
             align-items: center;
             justify-content: center;
             color: var(--text-color-first-d);
-            text-transform: uppercase;
+            background-color: var(--text-color-first-l);
         }
         #junior, #middle {
             border: 1px solid var(--text-color-green);
             color: var(--text-color-green);
+        }
+        #middle {
+            box-shadow: 0px 0px 30px 0px var(--text-color-green);
         }
     }
 }
@@ -177,6 +219,18 @@ onBeforeMount(() => {
     .home {
         h2 {
             font-size: 64px;
+        }
+        .btn-cv {
+            .button-before-line {
+                margin-left: calc(50% - 270px);
+            }
+            .button-after-line {
+                margin-right: calc(50% - 270px);
+            }
+            .button-cv {
+                width: 600px;
+                margin: auto;
+            }
         }
     }
 }
@@ -187,6 +241,18 @@ onBeforeMount(() => {
         }
         h2 {
             font-size: 50px;
+        }
+        .btn-cv {
+            margin-top: 30px;
+            .button-before-line {
+                margin-left: calc(50% - 109px);
+            }
+            .button-after-line {
+                margin-right: calc(50% - 109px);
+            }
+            .button-cv {
+                width: 278px;
+            }
         }
         .contacts {
             .contact {

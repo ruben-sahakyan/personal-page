@@ -34,14 +34,14 @@ const contactUs = () => {
         titleError.value = false
         contentError.value = true;
     } else {
-        fetch('https://rubensahakyan.com/api/contact-us/send-message', {
+        fetch('http://161.35.27.70:5000/contact-us/send-message', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
             body: JSON.stringify({
-                recipient: email.value, subject: title.value, content: content.value
+                email: email.value, title: title.value, content: content.value
             })
         }).then(resp => resp.json())
         .then(date => {
@@ -98,7 +98,7 @@ section {
     max-width: 1000px;
     min-height: 200px;
     h3 {
-        color: var(--light-text-color-first);
+        color: var(--text-color-first-d);
         text-transform: uppercase;
         text-align: center;
         font-size: 32px;
@@ -116,14 +116,13 @@ section {
             margin-top: 10px;
             width: 100%;
             height: 40px;
-            font-size: 25px;
+            font-size: 30px;
             padding-left: 10px;
             background: none;
             border: none;
             border-bottom: 1px solid var(--border-color-second);
             outline: none;
-            color: white;
-            font-weight: 100;
+            color: white
         }
         textarea {
             color: white;
@@ -135,9 +134,8 @@ section {
             border: 1px solid var(--border-color-second);
             border-radius: 10px;
             padding: 10px;
-            font-size: 25px;
+            font-size: 30px;
             resize: vertical;
-            font-weight: 100;
         }
         button {
             display: block;

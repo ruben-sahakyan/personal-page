@@ -5,6 +5,7 @@ defineProps<{
     skill: {
         id: number,
         name: string,
+        use: boolean,
     },
 }>();
 
@@ -13,8 +14,9 @@ defineProps<{
 
 <template>
     <div class="skill">
+        <img class="use" v-show="skill.use" src="../../../assets/checkmark.png"/>
         <div class="bolt"></div>
-        <p>{{ skill.name }}</p>
+        <p :style="skill.use ? 'color: var(--text-color-green)' : ''">{{ skill.name }}</p>
         <div class="bolt"></div>
     </div>
 </template>
@@ -33,12 +35,20 @@ defineProps<{
     padding: 0px 4px;
     background: url('../../../assets/skill-bg-fon.png');
     position: relative;
+    .use {
+        position: absolute;
+        width: 40px;
+        height: 36px;
+        z-index: 1;
+        right: 12%;
+        bottom: 22px;
+    }
     p {
+        color: white;
         text-transform: uppercase;
         font-size: 28px;
         font-weight: 900;
-        color: var(--text-color-green);
-        color: #92fcd5;
+        color: var(--text-color-first-d);
         transition: all ease-in-out .3s;
     }
     .bolt {
